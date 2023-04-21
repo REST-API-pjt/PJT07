@@ -4,17 +4,17 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from .models import Movie, Actor, Review
-from .serializers import ActorListSerializer, MovieListSerializer, ReviewSerializer_title_content, MovieSerializer, ReviewSerializer, ReviewSerializer_ALL
+from .serializers import ActorListSerializer, MovieListSerializer, ReviewSerializer_title_content, MovieSerializer, ReviewSerializer, ReviewSerializer_ALL, ActorSerializer_name
 
 # Create your views here.
 @api_view(['GET', 'POST'])
 def actor_list(request):
     if request.method == 'GET':
         actors = Actor.objects.all()
-        serializer = ActorListSerializer(actors, many=True)
+        serializer = ActorSerializer_name(actors, many=True)
         return Response(serializer.data)
     elif request.method == 'POST':
-        serializer = ActorListSerializer(data = request.data)
+        serializer = ActorSerializer_name(data = request.data)
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)

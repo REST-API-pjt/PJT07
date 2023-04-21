@@ -35,7 +35,7 @@ class ActorSerializer_name(serializers.ModelSerializer):
     
     class Meta:
         model = Actor
-        fields = ('name',)
+        fields = ('id', 'name',)
 
 class ReviewSerializer_title_content(serializers.ModelSerializer):
     class Meta:
