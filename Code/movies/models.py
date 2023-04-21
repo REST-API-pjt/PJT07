@@ -11,8 +11,10 @@ class Movie(models.Model):
     overview = models.TextField()
     release_date = models.DateTimeField()
     poster_path = models.TextField()
-    actors = models.ManyToManyField(Actor, related_name="actors_movie")
-
+    actors = models.ManyToManyField(Actor, related_name="movies")
+    
+    def __str__(self):
+        return 'title: ' + self.title
 
 class Review(models.Model):
     title = models.CharField(max_length=100)
